@@ -1,0 +1,49 @@
+{% if ans %}
+
+<h1>{{ans}}</h1>
+
+{% endif %}
+
+{% if type == 'admin' %}
+
+        <h1>Welcome Admin</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="users"><h1>Choose a User:</h1></label>
+            <select name="users" id="users">
+                {% if data %}
+
+                    {% for i in data %}
+                        
+                        <option value="{{ i.user_name }}">{{ i.user_name }}</option>
+                   
+                    {% endfor %}
+
+                {% endif %}
+              
+            </select>
+            <br><br>
+            {% if pri %}
+
+                    {% for i in pri %}
+                        
+                    <input type="checkbox" id="{{ i.privillages_name }}" name="d[]" value="{{ i.privillages_name }}">
+                    <label for="{{ i.privillages_name }}">{{ i.privillages_name }}</label><br>
+                   
+                    {% endfor %}
+
+            {% endif %}
+            
+            <input type="submit" value="Submit">
+          </form>
+
+{% endif %}
+
+{% if data %}
+
+    {% for i in data %}
+        <h1>Name is : {{ i.user_name }}</h1>
+        <h1>Roll is : {{ i.user_type }}</h1>
+    {% endfor %}
+
+{% endif %}
